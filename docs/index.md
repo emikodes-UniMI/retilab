@@ -11,4 +11,4 @@ Chiunque può contribuire proponendo merge request al repo GitHub associato.
 
 
 ---
-Emiddio Ingenito [emikodes-UniMI](https://github.com/emikodes-UniMI) [emikodes](https://github.com/emikodes)
+_Emiddio Ingenito [emikodes-UniMI](https://github.com/emikodes-UniMI) [emikodes](https://github.com/emikodes)_
