@@ -1,7 +1,7 @@
 site_name: Appunti Laboratorio Reti di calcolatori - Ingenito Emiddio
-site_url: https://emikodes.github.io/retilab/
-repo_url: https://github.com/emikodes/retilab/
-repo_name: emikodes/retilab
+site_url: https://emikodes-UniMI.github.io/retilab/
+repo_url: https://github.com/emikodes-UniMI/retilab/
+repo_name: emikodes-UniMI/retilab
 edit_uri: edit/main/docs/
 
 # Configurazione Tema Material
