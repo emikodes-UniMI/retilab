@@ -1,0 +1,91 @@
+site_name: Appunti Laboratorio Reti di calcolatori - Ingenito Emiddio
+site_url: https://emikodes.github.io/retilab/
+repo_url: https://github.com/emikodes/retilab/
+repo_name: emikodes/retilab
+edit_uri: edit/main/docs/
+
+# Configurazione Tema Material
+theme:
+  name: material
+  language: it
+  logo: branding/logo.png
+  favicon: branding/favicon.ico
+
+  features:
+    - navigation.expand         # Apre le categorie cliccando sulla freccia
+    - navigation.top            # Bottone "Torna su" che appare scrollando
+    - navigation.tracking       # Evidenzia la sezione corrente mentre leggi
+    - toc.integrate             # Indice dei contenuti integrato nella sidebar sinistra
+    - search.suggest            # Suggerimenti mentre scrivi nella ricerca
+    - search.highlight          # Evidenzia le parole trovate
+    - search.share              # Pulsante per condividere la ricerca
+    - content.code.copy         # Pulsante per copiare i blocchi di codice
+    - content.action.edit       # Pulsante "Modifica questa pagina" su GitHub
+
+  palette:
+    # 1. Configurazione DARK (Total Black/Grey)
+    - scheme: slate
+      primary: black   # Header bianco (il testo diventa nero in automatico)
+      accent: red     # Consiglio: mantieni un accent minimo per i link (es. lime, yellow o white), 
+      toggle:
+        icon: material/weather-night
+        name: Passa alla modalità chiara
+
+    - scheme: default
+      primary: white   # Header bianco (il testo diventa nero in automatico)
+      accent: red
+      toggle:
+        icon: material/weather-sunny
+        name: Passa alla modalità scura
+
+  # Tipografia professionale
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+# Plugin aggiuntivi
+plugins:
+  - search
+  # - git-revision-date-localized  # Utile per mostrare "Ultimo aggiornamento" (richiede git)
+
+# Estensioni Markdown (Per rendere gli appunti belli e funzionali)
+markdown_extensions:
+  # Permette di usare le note colorate (!!! note "Nota Bene")
+  - admonition
+  
+  # Permette di usare icone (es: :smile:)
+  - attr_list
+  
+  # Liste di definizione
+  - def_list
+  
+  # Note a piè di pagina
+  - footnotes
+  
+  # Supporto avanzato per tabelle
+  - tables
+  
+  # Crea link automatici alle sezioni (l'icona # che appare a lato titoli)
+  - toc:
+      permalink: true
+  
+  # Gestione avanzata del codice (Syntax Highlighting)
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences    # Permette di annidare blocchi di codice
+  
+  # Tabbed code blocks (Utile per mostrare es. Config Cisco vs Linux)
+  - pymdownx.tabbed:
+      alternate_style: true 
+  
+  # Checkbox nelle liste [x]
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+  # Supporto Formule Matematiche (LaTeX) - Fondamentale per i tuoi appunti $G=(V,E)$
+  - pymdownx.arithmatex:
+      generic: true
