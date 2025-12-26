@@ -1,6 +1,6 @@
 # Routing
 
-> Ricordando il concetto di Autonomous System (AS), cioè un insieme di reti IP e router sotto il controllo di una > > singola entità amministrativa (es. un ISP, un'Università, una grande Azienda) che presenta al mondo Internet una > politica di routing comune e coerente, ed ognuna con associato un identificativo a 16 o 32 bit (ASN),
+> Ricordando il concetto di Autonomous System (AS), cioè un insieme di reti IP e router sotto il controllo di una singola entità amministrativa (es. un ISP, un'Università, una grande Azienda) che presenta al mondo Internet una politica di routing comune e coerente, ed ognuna con associato un identificativo a 16 o 32 bit (ASN),
 > distinguiamo il routing in due livelli gerarchici:
 >
 > - Routing IGP - Interno agli AS  (Include protocolli come OSPF, RIP)
