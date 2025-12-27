@@ -1,0 +1,1211 @@
+
+<!doctype html>
+<html lang="it" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Appunti completi del corso di Laboratorio di Reti di calcolatori, Università degli Studi di Milano. Apparati di rete, Cablaggi, DHCP, Subnetting, Routing, OSPF, RIP, VLAN, NAT, ACL e configurazioni Cisco.">
+      
+      
+        <meta name="author" content="Emiddio Ingenito">
+      
+      
+        <link rel="canonical" href="https://emikodes-UniMI.github.io/retilab/Routing/">
+      
+      
+        <link rel="prev" href="../NAT/">
+      
+      
+        <link rel="next" href="../VLAN/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../branding/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Routing - Appunti Laboratorio Reti di calcolatori - Emiddio Ingenito</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="red">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#routing" class="md-skip">
+          Vai al contenuto
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Intestazione">
+    <a href=".." title="Appunti Laboratorio Reti di calcolatori - Emiddio Ingenito" class="md-header__button md-logo" aria-label="Appunti Laboratorio Reti di calcolatori - Emiddio Ingenito" data-md-component="logo">
+      
+  <img src="../branding/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Appunti Laboratorio Reti di calcolatori - Emiddio Ingenito
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Routing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="red"  aria-label="Passa alla modalità chiara"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passa alla modalità chiara" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="red"  aria-label="Passa alla modalità scura"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passa alla modalità scura" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Cerca" placeholder="Cerca" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Cerca">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Condividi" aria-label="Condividi" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Cancella" aria-label="Cancella" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inizializza la ricerca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/emikodes-UniMI/retilab/" title="Apri repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    emikodes-UniMI/retilab
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigazione" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Appunti Laboratorio Reti di calcolatori - Emiddio Ingenito" class="md-nav__button md-logo" aria-label="Appunti Laboratorio Reti di calcolatori - Emiddio Ingenito" data-md-component="logo">
+      
+  <img src="../branding/logo.png" alt="logo">
+
+    </a>
+    Appunti Laboratorio Reti di calcolatori - Emiddio Ingenito
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/emikodes-UniMI/retilab/" title="Apri repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    emikodes-UniMI/retilab
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appunti Laboratorio di Reti di Calcolatori - UniMI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ACL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ACL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Apparati%20di%20rete/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apparati di rete
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cablaggi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cablaggi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DHCP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../NAT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAT (Network Address Translation)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Routing
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Routing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Indice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Indice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#routing-statico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routing Statico
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#routing-dinamico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routing Dinamico
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Routing Dinamico">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rip-routing-information-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RIP (Routing Information Protocol)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#funzionamento-di-rip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Funzionamento di RIP:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurazione-ripv1-in-packet-tracer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configurazione RIPv1 in Packet Tracer:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurazione-ripv2-in-packet-tracer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configurazione RIPv2 in Packet Tracer:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ospf-open-shortest-path-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OSPF (Open Shortest Path First)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#funzionamento-di-ospf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Funzionamento di OSPF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metrica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metrica
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aree
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurazione-ospf-in-packet-tracer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configurazione OSPF in Packet Tracer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../VLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VLAN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/emikodes-UniMI/retilab/edit/main/docs/Routing.md" title="Modifica" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="routing">Routing<a class="headerlink" href="#routing" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Ricordando il concetto di Autonomous System (AS), cioè un insieme di reti IP e router sotto il controllo di una singola entità amministrativa (es. un ISP, un'Università, una grande Azienda) che presenta al mondo Internet una politica di routing comune e coerente, ed ognuna con associato un identificativo a 16 o 32 bit (ASN),
+distinguiamo il routing in due livelli gerarchici:</p>
+<ul>
+<li>Routing IGP - Interno agli AS  (Include protocolli come OSPF, RIP)</li>
+<li>Routing EGP - Tra diversi AS (Protocollo BGP, gestisce l’internet)</li>
+</ul>
+<p>In questa sezione, tratteremo esclusivamente Routing IGP.</p>
+</blockquote>
+<p>Il Routing è il processo di selezione da parte di un router, del percorso migliore per instradare i pacchetti di dati attraverso una rete.</p>
+<p>Per capire meglio in cosa consiste il routing, immaginiamo di modellare la rete come un grafo pesato <span class="arithmatex">\(G=(V,E)\)</span>, dove <span class="arithmatex">\(V\)</span> è l’insieme dei router, <span class="arithmatex">\(E\)</span> l’insieme dei link, con i relativi costi associati.</p>
+<p>Sotto questa rappresentazione il compito del routing è quello di determinare il cammino minimo tra due nodi sorgente e destinazione.</p>
+<aside>
+<img src="https://www.notion.so/icons/bookmark_lightgray.svg" alt="https://www.notion.so/icons/bookmark_lightgray.svg" width="20px" />
+
+**Problema**: per poter calcolare un cammino minimo tra due nodi, ogni router deve avere una conoscenza (completa o limitata) della rete. Dove teniamo traccia di tale conoscenza?
+
+</aside>
+
+<p>Un Router, è un sistema diviso concettualmente in due piani funzionali distinti:</p>
+<ul>
+<li>
+<p><strong>Control Plane</strong> - La CPU e la RAM eseguono un sistema operativo per router, che si occupa di gestire le configurazioni statiche e i protocolli di routing dinamico.</p>
+<p>L’output di questo piano è la <strong>RIB (Routing Information Base), un database che racchiude la conoscenza che un router ha della rete.</strong></p>
+<p>E’ spesso ridondante (Potrebbe contenere più rotte diverse per raggiungere la stessa destinazione, per esempio perchè apprese secondo modalità/protocolli differenti), non ottimizzata per la velocità.</p>
+<p>Per questo, il control plane <strong>“distilla” la RIB</strong> in una seconda tabella detta <strong>FIB (Forwarding Information Base), che contiene le sole rotte “migliori” per ogni destinazione.</strong></p>
+<p>Esempio di tabella di routing:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Codice</strong></th>
+<th><strong>Network Destination</strong></th>
+<th><strong>Prefisso (Mask)</strong></th>
+<th><strong>Next Hop / Gateway</strong></th>
+<th><strong>Interface</strong></th>
+<th><strong>AD</strong></th>
+<th><strong>Metric</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>C</strong></td>
+<td><code>192.168.0.0</code></td>
+<td><code>/24</code></td>
+<td><em>Directly Connected</em></td>
+<td><code>Gig0/1</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>L</strong></td>
+<td><code>192.168.0.100</code></td>
+<td><code>/32</code></td>
+<td><em>Local (My IP)</em></td>
+<td><code>Gig0/1</code></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>S</strong></td>
+<td><code>0.0.0.0</code></td>
+<td><code>/0</code></td>
+<td><code>10.10.10.1</code></td>
+<td><code>Gig0/0</code></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>O</strong></td>
+<td><code>172.16.0.0</code></td>
+<td><code>/16</code></td>
+<td><code>10.10.10.2</code></td>
+<td><code>Gig0/0</code></td>
+<td>110</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+<p><em>(Nota: C=Connessa, L=Locale, S=Statica, O=OSPF)</em></p>
+<p>Le rotte “migliori” da installare nella FIB, sono selezionate considerando in ordine:</p>
+<ul>
+<li>Validità del next hop - Il router verifica se l’indirizzo del next hop è risolvibile: in caso negativo, la rotta viene scartata.</li>
+<li>
+<p>Longest Prefix Match - Supponiamo un router abbia due rotte per la stessa rete di destinazione:</p>
+<ul>
+<li>Rotta A: <code>192.168.10.0/24</code> (comprende gli hosts da .0 a .255)</li>
+<li>Rotta B: <code>192.168.10.0/28</code> (comprende gli hosts da .0 a .15)</li>
+</ul>
+<p>Arriva un pacchetto per <code>192.168.10.5</code>: entrambe le rotte sono valide, ma la Rotta B è più “specifica” (maschera di sottorete più lunga).</p>
+<p>Il router sceglierà <strong>sempre</strong> la rotta più specifica.</p>
+</li>
+<li>
+<p>Distanza Amministrativa - A Parità di “precisione” di una rotta, si considera il valore del campo AD nella routing table.</p>
+<p>Questo numero indica al router “quanto è affidabile” la fonte da cui ha appreso tale rotta.</p>
+<ul>
+<li><strong>0:</strong> Connessione diretta</li>
+<li><strong>1:</strong> Rotta statica (Impostata dall’amministratore di rete)</li>
+<li><strong>90:</strong> EIGRP</li>
+<li><strong>110:</strong> OSPF</li>
+<li><strong>200:</strong> BGP</li>
+</ul>
+<p>Valori più bassi = affidabilità più elevata.</p>
+</li>
+<li>
+<p>Metrica - Costo associato ad una rotta, in termini di numero di hops, larghezza di banda. ritardo o affidabilità del collegamento.</p>
+</li>
+<li><strong>Data Plane</strong> - Quando un pacchetto entra in un router, una porzione di hardware dedicata al forwarding sceglie dove inoltrarlo, riscrivendo l’header di livello 2 cambiando il MAC sorgente con il proprio (del router), ed il MAC destinazione col MAC corrispondente al next hop IP preso dalla FIB.</li>
+</ul>
+<p>Decrementa il TTL, ricalcola checksum, inoltra il pacchetto sull’interfaccia corrispondente al Next Hop IP.</p>
+<p><aside>
+💡</p>
+<p>Questa divisione in livelli, permette una robusta resistenza agli errori: se il Control Plane crasha (il software di routing si blocca), il router può continuare a inoltrare pacchetti (compito del Data Plane) usando l'ultima FIB conosciuta.</p>
+</aside>
+</li>
+</ul>
+<p>Capito dove memorizziamo la conoscenza della rete, esistono due modalità con cui un router può apprenderla:</p>
+<ul>
+<li>
+<p>Routing statico - L’amministratore di rete predispone manualmente i percorsi che i pacchetti dovranno seguire per arrivare ad una determinata rete, e li configura nel router sotto forma di voci nella RIB.</p>
+<p>Questo approccio prevede controllo totale sul traffico, oltre a prestazioni maggiori (I singoli router non hanno bisogno di calcolare da se le rotte del traffico, sono statiche ed impostate a priori).</p>
+<p>Tuttavia, scala molto male, sia in termini di complessità di configurazione iniziale (configurare rotte statiche su di una rete con 1000 router, è sicuramente dispensioso), sia in evoluzione (ogni modifica della rete, richiede riconfigurazione manuale delle rotte).</p>
+<p><aside>
+<img src="https://www.notion.so/icons/bookmark_lightgray.svg" alt="https://www.notion.so/icons/bookmark_lightgray.svg" width="20px" /></p>
+<p>Il Routing statico può essere comunque utile in reti grandi, come “piano di backup” in caso di crash dei protocolli di routing dinamico.
+Un amministratore di rete può impostare delle rotte statiche con AD “artificialmente” molto alto (es: 200), che verranno utilizzate solo in caso il routing dinamico fallisse.</p>
+</aside>
+</li>
+<li>
+<p>Routing dinamico - I Router automaticamente prendono conoscenza della topologia della rete, scambiandosi informazioni e calcolando i percorsi migliori.</p>
+</li>
+</ul>
+<hr />
+<h2 id="routing-statico">Routing Statico<a class="headerlink" href="#routing-statico" title="Permanent link">&para;</a></h2>
+<p><img alt="images/image.png" src="../images/image%2041.png" /></p>
+<p>Nella topologia sopra illustrata, ogni coppia di router, appartiene ad una sottorete a se, con numero massimo di hosts pari a 2.</p>
+<p>La sottomaschera di queste reti sarà /30 (Vogliamo configurare 2 hosts, riservando due indirizzi per base e broadcast, necessitiamo di un Host ID pari a 2 bit).</p>
+<p>Vogliamo permettere la comunicazione tra i due PC nelle LAN verde e lilla.</p>
+<p>Il Router 6 è a conoscenza delle reti verde e gialla (poichè direttamente connesso ad esse), ma non sa come raggiungere le reti azzurre e lilla.</p>
+<p>Impostiamo due rotte statiche per esse:</p>
+<p><strong>Sintassi del comando di configurazione di una rotta statica</strong>: <strong><code>router(config)# ip route &lt;Dst Net Base addr&gt; &lt;Dst Net mask&gt; &lt;Next hop IP addr&gt;</code></strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>**Router&gt;enable
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Router#conf t
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Enter configuration commands, one per line.  End with CNTL/Z.
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Router(config)#ip route 192.168.0.4 255.255.255.252 192.168.0.2
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Router(config)#ip route 192.168.10.0 255.255.255.0 192.168.0.2**
+</span></code></pre></div>
+<p>Router 5 conosce le reti gialla e azzurra, ma non conosce verde e lilla.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>**Router&gt;enable
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Router#conf t
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Enter configuration commands, one per line.  End with CNTL/Z.
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Router(config)#ip route 192.168.10.0 255.255.255.0 192.168.0.6
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>Router(config)#ip route 192.168.1.0 255.255.255.0 192.168.0.1**
+</span></code></pre></div>
+<p>Router 7 conosce le reti azzurra e lilla, ma non conosce verde e gialla.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>**Router&gt;enable
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Router#conf t
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>Enter configuration commands, one per line.  End with CNTL/Z.
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>Router(config)#ip route 192.168.0.0 255.255.255.252 192.168.0.5
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>Router(config)#ip route 192.168.1.0 255.255.255.0 192.168.0.5**
+</span></code></pre></div>
+<p><img alt="images/image.png" src="../images/image%2042.png" /></p>
+<p>Ogni router conosce ora l’intera topologia della rete, la comunicazione tra i due PC è consentita.</p>
+<hr />
+<h2 id="routing-dinamico">Routing Dinamico<a class="headerlink" href="#routing-dinamico" title="Permanent link">&para;</a></h2>
+<h3 id="rip-routing-information-protocol">RIP (Routing Information Protocol)<a class="headerlink" href="#rip-routing-information-protocol" title="Permanent link">&para;</a></h3>
+<p>RIP è un protocollo <strong>Distance Vector</strong> basato sull'algoritmo di <strong>Bellman-Ford</strong>.
+A differenza dei protocolli Link State, i router RIP <strong>NON hanno una mappa completa della rete: c</strong>onoscono solo il costo totale per raggiungere una destinazione e il prossimo salto (Next Hop).</p>
+<p>Utilizza il protocollo di trasporto <strong>UDP.</strong></p>
+<p>3 Versioni:</p>
+<ul>
+<li>
+<p>RIPv1</p>
+<p><strong>Routing Classful:</strong> Non invia la Subnet Mask negli aggiornamenti di routing, per questo non supporta Subnetting <strong>VLSM</strong> (Variable Length Subnet Mask). E’ in grado di annunciare sole reti /8, /16 o /24 (Classi A,B,C pure).</p>
+<p><strong>Trasmissione:</strong> Invia gli aggiornamenti in <strong>Broadcast</strong> (255.255.255.255) ogni 30 secondi.</p>
+<p>Questo disturba ogni dispositivo nel dominio di broadcast (PC, stampanti ricevono il pacchetto, la NIC invia il pacchetto al S.O, rileva che non c’è nessun SW in ascolto per pacchetti RIP, lo scartano).</p>
+<p><strong>Sicurezza:</strong> Nessuna autenticazione. Chiunque colleghi un router pirata può iniettare rotte false e dirottare il traffico.</p>
+</li>
+<li>
+<p>RIPv2</p>
+<p><strong>Routing Classless:</strong> Invia la <strong>Subnet Mask</strong> insieme all'indirizzo IP. Supporta pienamente <strong>VLSM</strong> e <strong>CIDR</strong>.</p>
+<p><strong>Trasmissione:</strong> Trasmette gli aggiornamenti in multicast ai soli router RIP (Gruppo multicast)</p>
+<p><strong>Sicurezza:</strong> Supporta autenticazione (MD5 o Clear Text). Il router accetta aggiornamenti solo se la password corrisponde.</p>
+</li>
+<li>
+<p>RIPng</p>
+<p>Aggiunge supporto ad IPv6</p>
+</li>
+</ul>
+<h3 id="funzionamento-di-rip"><strong>Funzionamento di RIP:</strong><a class="headerlink" href="#funzionamento-di-rip" title="Permanent link">&para;</a></h3>
+<p><img alt="images/image.png" src="../images/image%2043.png" /></p>
+<p>Analizziamo la topologia in figura: all’avvio, ogni router riempie la propria tabella di routing inserendo le informazioni relative alle reti direttamente connesse. (Type = C (Connected), Metric=0)</p>
+<p><img alt="images/image.png" src="../images/image%2044.png" /></p>
+<p>Ogni 30 secondi, i router inviano e ricevono un’informazione ridotta della tabella di routing dei vicini, che contiene:</p>
+<ul>
+<li>Reti conosciute</li>
+<li>Costo (Metrica, espressa in “Numero di router da attraversare” per poter arrivare alla rete destinazione)</li>
+</ul>
+<p>Per ogni destinazione nella tabella del vicino, il router calcola:
+<span class="arithmatex">\(HopCount_{new} = HopCount_{vicino} + 1\)</span>
+(Dove "+1" è il costo per raggiungere il vicino stesso).</p>
+<p>Fatto questo calcolo, applica due regole logiche:</p>
+<ul>
+<li>
+<p><strong>Discovery</strong></p>
+<p>Se la destinazione che sto analizzando, è sconosciuta per la mia tabella di routing, procedo ad “impararla”.</p>
+<p>Aggiungo alla mia tabella una entry contenente la rete che sto imparando, l’interfaccia che mi collega al vicino, la metrica calcolata.</p>
+</li>
+<li>
+<p><strong>Update</strong></p>
+<p>Se la destinazione che sto analizzando è già conosciuta, ma la metrica calcolata è minore, vuol dire che ho appreso una nuova strada più veloce.</p>
+<p>Aggiorno la rotta con il nuovo valore per HopCount, ed impostando come next hop il vicino dal quale ho ricevuto la tabella.</p>
+</li>
+</ul>
+<p><img alt="images/image.png" src="../images/image%2045.png" /></p>
+<p>Ora ogni router ha le informazioni necessarie per comunicare con l’intera rete.</p>
+<p>Provando a trasmettere un messaggio tra PC2 e PC0, esso seguirà il percorso: PC2 → Router2 → Router0→ PC0</p>
+<p><img alt="images/image.png" src="../images/image%2046.png" /></p>
+<p>Simuliamo un guasto tra Router2 e Router0</p>
+<p><img alt="images/image.png" src="../images/image%2047.png" /></p>
+<p>Viene immediatamente segnalato il guasto del link (Triggered Update, senza dover aspettare il timer standard di 30 secondi), attraverso lo scambio di informazioni standard. </p>
+<p>Router2 Aggiorna la propria rotta verso la rete del PC0, impostando Router1 come Next Hop.</p>
+<h3 id="configurazione-ripv1-in-packet-tracer"><strong>Configurazione RIPv1 in Packet Tracer:</strong><a class="headerlink" href="#configurazione-ripv1-in-packet-tracer" title="Permanent link">&para;</a></h3>
+<p>Situazione iniziale: Ogni router conosce le sole reti direttamente connesse.</p>
+<p><img alt="images/image.png" src="../images/image%2048.png" /></p>
+<p>Partiamo dal Router0. Esso dovrà annunciare la conoscenza della rete 192.168.1.0 (Quella in cui si trova PC0), e della rete 192.168.0.0 (Quella che collega i 3 router assieme).</p>
+<aside>
+<img src="https://www.notion.so/icons/bookmark_lightgray.svg" alt="https://www.notion.so/icons/bookmark_lightgray.svg" width="20px" />
+
+RIPv1 è classful, pertanto dobbiamo annunciare l’intera rete 192.168.0.0/24, e non le singole sottoreti che collegano le coppie di router.
+
+</aside>
+
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>**Router&gt;enable
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Router#conf t
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Enter configuration commands, one per line.  End with CNTL/Z.
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>Router(config)#router rip
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>Router(config-router)#network 192.168.1.0
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>Router(config-router)#network 192.168.0.0
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>Router(config-router)#passive-interface GigabitEthernet 2/0**
+</span></code></pre></div>
+<p>Il comando <strong><code>router rip</code></strong> ordina al sistema operativo di avviare il demone software di <strong>RIP</strong>. Di default, la versione eseguita è RIPv1.</p>
+<p>Col comando <strong><code>network A.B.C.D</code></strong>, il demone RIP esegue due azioni:</p>
+<ul>
+<li>Scansiona tutte le porte fisiche del router, rileva le interfacce associate alla rete indicata, e le attiva per la ricezione di pacchetti RIP.</li>
+<li>Comincia ad annunciare tale rete ai vicini.</li>
+</ul>
+<p>Eseguendo il comando <strong><code>network 192.168.1.0</code></strong>, il router comincerà quindi contemporaneamente ad annunciare la conoscenza di tale rete ai vicini (corretto), ma anche ad inoltrare i pacchetti RIP all’interno della LAN (comportamento indesiderato).</p>
+<p>Con <strong><code>passive-interface GigabitEthernet 2/0</code></strong>, dove <strong><code>GigabitEthernet 2/0</code></strong> è l’interfaccia associata alla LAN 192.168.1.0, indichiamo al router di smettere di inviare pacchetti RIP ad essa, pur continuando ad annunciare la rete agli altri router.</p>
+<p>Ripetiamo per Router1:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>**Router&gt;enable
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Router#conf t
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Enter configuration commands, one per line.  End with CNTL/Z.
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>Router(config)#router rip
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>Router(config-router)#network 192.168.10.0
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>Router(config-router)#network 192.168.0.0
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>Router(config-router)#passive-interface GigabitEthernet 1/0**
+</span></code></pre></div>
+<p>Router2:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>**Router&gt;enable
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Router#conf t
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Enter configuration commands, one per line.  End with CNTL/Z.
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>Router(config)#router rip
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>Router(config-router)#network 192.168.20.0
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>Router(config-router)#network 192.168.0.0
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>Router(config-router)#passive-interface Ethernet 2/0**
+</span></code></pre></div>
+<p><img alt="images/image.png" src="../images/image%2045.png" /></p>
+<p>I Router hanno correttamente cominciato a scambiarsi messaggi RIP.</p>
+<h3 id="configurazione-ripv2-in-packet-tracer"><strong>Configurazione RIPv2 in Packet Tracer:</strong><a class="headerlink" href="#configurazione-ripv2-in-packet-tracer" title="Permanent link">&para;</a></h3>
+<p>Operiamo sulla stessa topologia indicata sopra.</p>
+<p>RIPv2 è classless, dobbiamo quindi annunciare singolarmente tutte le sottoreti (anche le /30 tra router).</p>
+<p>Router0:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>**Router&gt;enable
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Router#conf t
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>Enter configuration commands, one per line.  End with CNTL/Z.
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>Router(config)#router rip
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>Router(config-router)#version 2
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>Router(config-router)#network 192.168.1.0
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>Router(config-router)#network 192.168.0.4
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>Router(config-router)#network 192.168.0.0**
+</span></code></pre></div>
+<p>Router1:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>**Router&gt;enable
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Router#conf t
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>Enter configuration commands, one per line.  End with CNTL/Z.
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>Router(config)#router rip
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>Router(config-router)#version 2
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>Router(config-router)#network 192.168.10.0
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>Router(config-router)#network 192.168.0.0
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>Router(config-router)#network 192.168.0.8**
+</span></code></pre></div>
+<p>Router2:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>**Router&gt;enable
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>Router#conf t
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>Enter configuration commands, one per line.  End with CNTL/Z.
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>Router(config)#router rip
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>Router(config-router)#version 2
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>Router(config-router)#network 192.168.0.4
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>Router(config-router)#network 192.168.0.8
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>Router(config-router)#network 192.168.20.0**
+</span></code></pre></div>
+<aside>
+<img src="https://www.notion.so/icons/bookmark_lightgray.svg" alt="https://www.notion.so/icons/bookmark_lightgray.svg" width="20px" />
+
+Nota! RIPv2 trasmette gli aggiornamenti in modalità multicast.
+La trasmissione in modalità multicast, implica comunque che i pacchetti vengono inoltrati in modalità flooding su tutte le interfacce, ma vengono scartati dalla NIC del destinatario (dopo un check sul MAC destinatario).
+
+I PC nella LAN quindi ricevono comunque i pacchetti RIP, e seppur scartati dalla NIC, un utente smaliziato potrebbe usare un analizzatore di rete (es: Wireshark) per catturare i pacchetti RIP e acquisire conoscenza della rete.
+
+**E’ pertanto comunque consigliato eseguire il comando passive-interface anche in RIPv2!**
+
+</aside>
+
+<p><img alt="images/image.png" src="../images/image%2049.png" /></p>
+<hr />
+<h3 id="ospf-open-shortest-path-first">OSPF (Open Shortest Path First)<a class="headerlink" href="#ospf-open-shortest-path-first" title="Permanent link">&para;</a></h3>
+<p>OSPF è un protocollo di routing Link State basato direttamente su IP.</p>
+<p>A differenza di RIP, ogni router OSPF acquisisce conoscenza dell’intera topologia della porzione di rete in cui si trova, che utilizzerà per calcolare localmente i cammini minimi verso ogni destinazione.</p>
+<p><img alt="images/image.png" src="../images/image%2050.png" /></p>
+<p>Per far funzionare tutto questo, il router deve gestire tre archivi distinti nella sua memoria:</p>
+<ul>
+<li>Neighbor Table - Lista dei router adiacenti (direttamente connessi), con i loro indirizzi IP, Interfacce, Router ID, Stato.</li>
+<li>Topology Table (LSDB - Link State Database) - Lista di tutti gli LSA (Link State Advertisements) raccolti. Rappresenta la mappa completa della rete.</li>
+<li>Routing Table - Popolata coi soli percorsi migliori, calcolati eseguendo l’algoritmo di Dijkstra sulle informazioni contenute nelle due tabelle precedenti.</li>
+</ul>
+<h3 id="funzionamento-di-ospf">Funzionamento di OSPF<a class="headerlink" href="#funzionamento-di-ospf" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Inizializzazione del processo OSPF</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Router# config term # accedere alla config mode
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Router(config)# router ospf 1 # avvio il processo OSPF, con Process ID pari ad 1 (questo serve ad identificare eventuali multiple istanze di OSPF in esecuzione sullo stesso router)
+</span></code></pre></div>
+<p>Automaticamente, viene assegnato al router un ID univoco a 32bit (RID), con il quale esso potrà identificarsi.</p>
+<p><img alt="images/image.png" src="../images/image%2051.png" /></p>
+<p>Selezione delle interfacce da annunciare durante lo scambio di messaggi:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a> Router(config)# network &lt;ip-address&gt; &lt;wildcard-mask&gt; area &lt;area-id&gt;
+</span></code></pre></div>
+<p>Tutte le interfacce il cui indirizzo rientra (match) nella combinazione ip-address e wildcard-mask indicata:</p>
+<ul>
+<li>Verranno annunciate ai router adiacenti.</li>
+<li>Saranno destinazione di traffico OSPF</li>
+</ul>
+<p><aside>
+<img src="https://www.notion.so/icons/bookmark_lightgray.svg" alt="https://www.notion.so/icons/bookmark_lightgray.svg" width="20px" /></p>
+<p>Vogliamo evitare di inviare pacchetto OSPF in reti composte da soli hosts (LAN).</p>
+<p>Per fare ciò, possiamo impostare le interfacce in modalità passiva</p>
+</aside>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Router(config-router)# passive-interface GigabitEthernet0/0
+</span></code></pre></div>
+</li>
+<li>
+<p><strong>Inizio del processo di adiacenza</strong></p>
+<p><img alt="images/image.png" src="../images/image%2052.png" /></p>
+<ul>
+<li>Stato iniziale (DOWN): Entrambi i router hanno Neighbor Table vuota.</li>
+<li>
+<p>R1 invia un pacchetto HELLO in Multicast a <code>224.0.0.5</code> (Gruppo a cui appartengono tutti i router OSPF)</p>
+<p><strong>Contenuto Pacchetto R1:</strong></p>
+<ul>
+<li><strong>Source OSPF Router ID:</strong> <code>1.1.1.1</code></li>
+<li><strong>Active Neighbor Field:</strong> <code>[VUOTO]</code> (R1 non conosce nessuno).</li>
+</ul>
+<p>R2 riceve il pacchetto, controlla i parametri (Area, Subnet, Password, Hello Timer), vede che il campo “Active Neighbor” è vuoto, capisce che R1 non è ancora a sua conoscenza.</p>
+<p>R2 registra R1 nella sua Neighbor Table, impostandone lo stato a INIT.</p>
+<p><strong>INIT = Conosco R1, ma lui ancora non conosce me. La comunicazione è unidirezionale.</strong></p>
+</li>
+<li>
+<p>R2 risponde con un nuovo pacchetto HELLO</p>
+<p><strong>Contenuto del Pacchetto R2:</strong></p>
+<ul>
+<li><strong>Source OSPF Router ID:</strong> <code>2.2.2.2</code></li>
+<li><strong>Active Neighbor Field:</strong> <code>1.1.1.1</code></li>
+</ul>
+<p>R1 lo riceve, legge il campo Source OSPF Router ID, riconosce la corrispondenza tra il suo RID e il campo Active Neighbor: Vuol dire che il suo precedente pacchetto HELLO è stato raggiunto da 2.2.2.2, che ne ha registrato la presenza.</p>
+<p>R1 registra R2 nella sua neighbor table con lo stato 2WAY: ora entrambi sono a conoscenza l’uno dell’altro.</p>
+</li>
+<li>
+<p>R1 risponde con un ultimo HELLO con 2.2.2.2 nel campo Active Neighbor, così che anche R2 imposti lo stato 2WAY.</p>
+</li>
+<li><strong>Scambio di Link State Advertisement</strong></li>
+</ul>
+<p>Prima di inviare dati, ogni coppia di router si sincronizza per eleggere un Master e uno Slave.</p>
+<p>In figura, 1.1.1.1 è il master (Nella maggior parte dei casi in realtà, il master è quello con RID più alto, in questo caso sarebbe 2.2.2.2)</p>
+<p><img alt="images/image.png" src="../images/image%2053.png" /></p>
+<p>1.1.1.1 invia un pacchetto DBD, in cui è contenuto un sommario del suo LSDB (I soli LSA Headers). Inviamo i soli header e non l’intero LSDB, poiché per ogni coppia di router, i due LSDB differiranno ad uno stesso momento per poche informazioni. Sarebbe uno spreco trasmettere l’intero LSDB.</p>
+<p>Anche 2.2.2.2 invia i propri headers.</p>
+<p>1.1.1.1 confronta gli header ricevuti con il proprio LSDB.</p>
+<p>Per ognuno, se il LSA manca o se quello ricevuto è più recente, viene aggiunto alla <strong>LSA Request List</strong>.</p>
+<p>Ipotizziamo 1.1.1.1 rilevi che gli manchino 50 LSA per essere sincronizzato:</p>
+<ul>
+<li>1.1.1.1 genera un (o più, si inseriscono quante più richieste possibili compatibilmente con MTU) pacchetto LSR. Al suo interno c'è la lista degli ID di tutti i 50 LSA mancanti.</li>
+<li>2.2.2.2 riceve la lista. Supponiamo che ogni LSA completo pesi 100 Byte.
+Totale dati: 50 * 100 = 5000$ Byte.
+L'MTU è 1500 Byte.
+R2 non può mandare tutto in un pacchetto.
+R2 invierà <strong>4 pacchetti LSU (Link State Update)</strong>:
+• LSU #1 (Primi 14 LSA)
+• LSU #2 (Secondi 14 LSA)
+• LSU #3 (Terzi 14 LSA)
+• LSU #4 (Ultimi 8 LSA)</li>
+<li>1.1.1.1 conferma la ricezione dei LSA con un ACK cumulativo.</li>
+</ul>
+<p>La procedura si ripete con 2.2.2.2 che richiede i LSA mancanti.</p>
+<p>Al termine, gli LSDB dei due router sono sincronizzati (Stato FULL), eseguono l’algoritmo di Dijkstra per popolare la tabella di routing.</p>
+</li>
+<li>
+<p><strong>Segnalazione di cambiamenti nella topologia di rete</strong></p>
+<p>Dopo la sincronizzazione (stato <strong>FULL</strong>), la rete è silenziosa. I router inviano solo piccoli Hello ogni 10s (Keepalive).
+Se però cade un link o cambia qualcosa, il router che rileva il guasto invia immediatamente un <strong>LSU in flooding</strong>.</p>
+<p>Tutti i router ricevono l'aggiornamento, aggiornano l'LSDB ed eseguono di nuovo Dijkstra.</p>
+</li>
+</ul>
+<h3 id="metrica">Metrica<a class="headerlink" href="#metrica" title="Permanent link">&para;</a></h3>
+<p>In ogni pacchetto LSU, è associata ai LSA una metrica che OSPF calcola come:</p>
+<p><span class="arithmatex">\(Metric=\frac{Reference Bandwidth(Mbps)}{LinkBandwidth(Mbps)}\)</span></p>
+<p>Questo valore è ciò che l’algoritmo di Dijkstra minimizza durante il calcolo dei percorsi migliori.</p>
+<p><img alt="images/image.png" src="../images/image%2054.png" /></p>
+<h3 id="aree">Aree<a class="headerlink" href="#aree" title="Permanent link">&para;</a></h3>
+<p>Per garantire la scalabilità e impedire che l'LSDB raggiunga dimensioni troppo elevate su reti vaste, OSPF divide logicamente gli AS in <strong>Aree</strong>.</p>
+<p><img alt="images/image.png" src="../images/image%2055.png" /></p>
+<p>Questa segmentazione crea una gerarchia a due livelli:</p>
+<ol>
+<li><strong>Dominio di Flooding Ridotto:</strong> Ogni Area mantiene il proprio LSDB. </li>
+<li><strong>Isolamento dei Guasti:</strong> Se un link cade nell'Area 1, l'algoritmo SPF viene ricalcolato <strong>solo</strong> dai router dell'Area 1.</li>
+</ol>
+<p><img alt="images/image.png" src="../images/image%2056.png" /></p>
+<p>Tra le varie tipologie, utilizzeremo la <strong>Stub Area</strong>. È una configurazione ottimizzata di OSPF che <strong>filtra le rotte esterne al Sistema Autonomo</strong> (LSA Type 5), impedendo che entrino nell’LSDB (riducendone le dimensioni)
+Per raggiungere destinazioni esterne, la Stub Area utilizza una <strong>Default Route (<code>0.0.0.0/0</code>)</strong> iniettata automaticamente dal router di confine (ABR), delegando a lui ogni decisione di instradamento verso l'esterno. (In figura, il router di confine per l’area 1 è R1) </p>
+<h3 id="configurazione-ospf-in-packet-tracer">Configurazione OSPF in Packet Tracer<a class="headerlink" href="#configurazione-ospf-in-packet-tracer" title="Permanent link">&para;</a></h3>
+<p><img alt="images/image.png" src="../images/image%2057.png" /></p>
+<p><strong>Router 0:</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>**Router&gt;enable
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>Router#conf t
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>Enter configuration commands, one per line.  End with CNTL/Z.
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>Router(config)#router ospf 1
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>Router(config-router)# area 1 stub #configurazione area stub
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>Router(config-router)#network 192.168.1.0 0.0.0.255 area 1 #annuncio reti
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>Router(config-router)#network 192.168.0.0 0.0.0.3 area 1
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>Router(config-router)#network 192.168.0.4 0.0.0.3 area 1
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>Router(config-router)#passive-interface GigabitEthernet2/0 #non inoltro pacchetti OSPF nella LAN**
+</span></code></pre></div>
+<p><strong>Router 1:</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>**Router&gt;enable
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>Router#conf t
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>Enter configuration commands, one per line.  End with CNTL/Z.
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>Router(config)#router ospf 1
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>Router(config-router)# area 1 stub
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>Router(config-router)#network 192.168.10.0 0.0.0.255 area 1
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>Router(config-router)#network 192.168.0.0 0.0.0.3 area 1
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>Router(config-router)#network 192.168.0.8 0.0.0.3 area 1
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>Router(config-router)#passive-interface GigabitEthernet1/0**
+</span></code></pre></div>
+<p><strong>Router 2:</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>**Router&gt;enable
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>Router#conf t
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>Enter configuration commands, one per line.  End with CNTL/Z.
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>Router(config)#router ospf 1
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>Router(config-router)# area 1 stub
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>Router(config-router)#network 192.168.20.0 0.0.0.255 area 1
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>Router(config-router)#network 192.168.0.4 0.0.0.3 area 1
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>Router(config-router)#network 192.168.0.8 0.0.0.3 area 1
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>Router(config-router)#passive-interface Ethernet2/0**
+</span></code></pre></div>
+<p><img alt="images/image.png" src="../images/image%2058.png" /></p>
+<p>Con il comando <code>show ip ospf neighbor</code>, verifichiamo che le connessioni con i vicini siano in stato FULL, ad indicare che gli LSDB sono stati correttamente sincronizzati.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Torna su
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Emiddio Ingenito - Emikodes</a>
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.expand", "navigation.top", "navigation.tracking", "toc.integrate", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiato", "clipboard.copy": "Copia", "search.result.more.one": "1 altro in questa pagina", "search.result.more.other": "# altri in questa pagina", "search.result.none": "Nessun documento trovato", "search.result.one": "1 documento trovato", "search.result.other": "# documenti trovati", "search.result.placeholder": "Scrivi per iniziare a cercare", "search.result.term.missing": "Non presente", "select.version": "Seleziona la versione"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+      
+    
+  </body>
+</html>
